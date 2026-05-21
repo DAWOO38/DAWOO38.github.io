@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GASIO | 맞는 국비과정, 전문가가 찾아드립니다</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --primary:#0D1B2A;
+  --accent:#FF4F1F;
+  --accent2:#00C48C;
+  --bg:#F6F4EF;
+  --white:#FFFFFF;
+  --text:#0D1B2A;
+  --muted:#6B7280;
+  --border:#E2DED6;
+  --card:#FFFFFF;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:64px;
+  background:rgba(246,244,239,0.94);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{font-size:24px;font-weight:900;letter-spacing:3px;color:var(--primary);}
+.nav-logo span{color:var(--accent);}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{
+  background:var(--accent);color:#fff;border:none;
+  padding:10px 24px;border-radius:8px;font-size:14px;font-weight:700;
+  cursor:pointer;font-family:'Noto Sans KR',sans-serif;
+  transition:opacity 0.2s,transform 0.15s;
+}
+.nav-cta:hover{opacity:0.88;transform:translateY(-1px);}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:130px 6% 90px;position:relative;overflow:hidden;
+  background:var(--bg);
+}
+.hero-watermark{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  font-size:clamp(100px,20vw,260px);font-weight:900;letter-spacing:-6px;
+  color:rgba(13,27,42,0.035);white-space:nowrap;pointer-events:none;user-select:none;
+}
+.always-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,196,140,0.12);color:var(--accent2);
+  border:1px solid rgba(0,196,140,0.3);
+  padding:7px 18px;border-radius:100px;
+  font-size:13px;font-weight:700;letter-spacing:0.5px;
+  margin-bottom:32px;animation:fadeUp 0.6s ease both;
+}
+.always-badge::before{
+  content:'';width:7px;height:7px;background:var(--accent2);
+  border-radius:50%;animation:pulse 1.5s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(1.5);}}
+.hero h1{
+  font-size:clamp(32px,5.5vw,66px);font-weight:900;line-height:1.15;
+  letter-spacing:-2px;color:var(--primary);margin-bottom:20px;
+  animation:fadeUp 0.6s 0.1s ease both;
+  word-break:keep-all;
+}
+.hero h1 em{font-style:normal;color:var(--accent);position:relative;}
+.hero h1 em::after{
+  content:'';position:absolute;left:0;bottom:-2px;right:0;
+  height:4px;background:var(--accent);border-radius:2px;
+}
+.hero-tagline{
+  font-size:clamp(17px,2.2vw,22px);font-weight:700;
+  color:var(--primary);line-height:1.6;
+  margin-bottom:12px;animation:fadeUp 0.6s 0.18s ease both;
+  word-break:keep-all;
+}
+.hero-sub{
+  font-size:clamp(14px,1.6vw,17px);color:var(--muted);font-weight:400;
+  line-height:1.8;max-width:540px;margin:0 auto 44px;
+  animation:fadeUp 0.6s 0.25s ease both;word-break:keep-all;
+}
+.hero-cta-group{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.6s 0.32s ease both;}
+.btn-primary{
+  background:var(--accent);color:#fff;border:none;
+  padding:16px 38px;border-radius:10px;font-size:16px;font-weight:700;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:transform 0.15s,box-shadow 0.15s;
+  box-shadow:0 4px 24px rgba(255,79,31,0.35);
+  font-family:'Noto Sans KR',sans-serif;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(255,79,31,0.42);}
+.btn-outline{
+  background:transparent;color:var(--primary);border:1.5px solid var(--primary);
+  padding:16px 38px;border-radius:10px;font-size:16px;font-weight:600;
+  cursor:pointer;text-decoration:none;display:inline-block;
+  transition:background 0.15s,color 0.15s;
+  font-family:'Noto Sans KR',sans-serif;
+}
+.btn-outline:hover{background:var(--primary);color:#fff;}
+.hero-stats{
+  display:flex;gap:48px;justify-content:center;margin-top:72px;
+  animation:fadeUp 0.6s 0.4s ease both;flex-wrap:wrap;
+}
+.hero-stat{text-align:center;}
+.hero-stat-num{font-size:30px;font-weight:900;color:var(--primary);letter-spacing:-1px;}
+.hero-stat-num span{color:var(--accent);}
+.hero-stat-label{font-size:12px;color:var(--muted);margin-top:4px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+
+/* MARQUEE */
+.marquee-wrap{overflow:hidden;background:var(--primary);padding:15px 0;border-top:3px solid var(--accent);}
+.marquee-track{display:flex;gap:64px;white-space:nowrap;animation:marquee 24s linear infinite;width:max-content;}
+.marquee-track span{font-size:12px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1.2px;text-transform:uppercase;}
+.marquee-track span.hl{color:var(--accent);}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+/* SECTION */
+section{padding:100px 6%;}
+.section-label{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+.section-title{font-size:clamp(26px,3.8vw,42px);font-weight:900;letter-spacing:-1px;color:var(--primary);line-height:1.2;margin-bottom:16px;word-break:keep-all;}
+.section-desc{font-size:16px;color:var(--muted);line-height:1.75;max-width:520px;word-break:keep-all;}
+
+/* WHY */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;max-width:1200px;margin:0 auto;}
+.why-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.why-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;transition:transform 0.2s,box-shadow 0.2s;}
+.why-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.07);}
+.why-card.wide{grid-column:span 2;background:var(--primary);border-color:var(--primary);}
+.why-card .ico{font-size:28px;margin-bottom:12px;}
+.why-card h3{font-size:15px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.why-card p{font-size:13px;color:var(--muted);line-height:1.65;word-break:keep-all;}
+.why-card.wide h3{color:#fff;font-size:19px;}
+.why-card.wide p{color:rgba(255,255,255,0.6);font-size:14px;}
+.why-card.wide .big-word{font-size:48px;font-weight:900;color:var(--accent);letter-spacing:-2px;line-height:1;margin-bottom:8px;}
+
+/* CURRICULUM */
+.curriculum-section{background:var(--primary);}
+.curriculum-section .section-label{color:var(--accent2);}
+.curriculum-section .section-title{color:#fff;}
+.curriculum-section .section-desc{color:rgba(255,255,255,0.5);}
+.curr-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:56px;max-width:1100px;margin-left:auto;margin-right:auto;}
+.curr-card{
+  border-radius:20px;padding:40px 32px;position:relative;overflow:hidden;
+  transition:transform 0.22s;cursor:default;
+}
+.curr-card:hover{transform:translateY(-5px);}
+.curr-card.c-quant{background:rgba(0,196,140,0.1);border:1.5px solid rgba(0,196,140,0.3);}
+.curr-card.c-human{background:rgba(255,79,31,0.1);border:1.5px solid rgba(255,79,31,0.3);}
+.curr-card.c-cyber{background:rgba(99,153,34,0.1);border:1.5px solid rgba(126,221,63,0.3);}
+.curr-card-ghost{
+  position:absolute;bottom:-20px;right:-10px;
+  font-size:100px;font-weight:900;line-height:1;
+  pointer-events:none;user-select:none;
+}
+.curr-card.c-quant .curr-card-ghost{color:rgba(0,196,140,0.07);}
+.curr-card.c-human .curr-card-ghost{color:rgba(255,79,31,0.07);}
+.curr-card.c-cyber .curr-card-ghost{color:rgba(126,221,63,0.07);}
+.curr-label{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.c-quant .curr-label{color:#00C48C;}
+.c-human .curr-label{color:var(--accent);}
+.c-cyber .curr-label{color:#7EDD3F;}
+.curr-card h3{font-size:26px;font-weight:900;color:#fff;margin-bottom:6px;letter-spacing:-0.5px;}
+.curr-card .curr-eng{font-size:13px;color:rgba(255,255,255,0.35);margin-bottom:20px;font-weight:500;}
+.curr-card ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.curr-card ul li{font-size:13px;color:rgba(255,255,255,0.65);display:flex;align-items:center;gap:10px;}
+.curr-card ul li::before{content:'';width:5px;height:5px;border-radius:50%;flex-shrink:0;}
+.c-quant ul li::before{background:#00C48C;}
+.c-human ul li::before{background:var(--accent);}
+.c-cyber ul li::before{background:#7EDD3F;}
+.curr-bottom{
+  max-width:1100px;margin:28px auto 0;
+  background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;padding:24px 32px;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+}
+.curr-bottom-icon{font-size:28px;}
+.curr-bottom-text{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;word-break:keep-all;}
+.curr-bottom-text strong{color:#fff;font-weight:700;}
+
+/* PROCESS */
+.process-list{display:flex;flex-direction:column;gap:0;max-width:780px;margin:56px auto 0;position:relative;}
+.process-list::before{content:'';position:absolute;left:27px;top:0;bottom:0;width:2px;background:var(--border);}
+.process-step{display:flex;gap:28px;align-items:flex-start;padding-bottom:44px;position:relative;}
+.process-step:last-child{padding-bottom:0;}
+.step-dot{
+  width:56px;height:56px;border-radius:50%;
+  background:var(--card);border:2px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:900;color:var(--primary);
+  flex-shrink:0;position:relative;z-index:1;
+  transition:background 0.2s,border-color 0.2s;
+}
+.process-step:hover .step-dot{background:var(--accent);border-color:var(--accent);color:#fff;}
+.step-content{padding-top:12px;}
+.step-content h3{font-size:17px;font-weight:700;color:var(--primary);margin-bottom:6px;}
+.step-content p{font-size:14px;color:var(--muted);line-height:1.75;word-break:keep-all;}
+.step-tag{display:inline-block;background:rgba(255,79,31,0.1);color:var(--accent);font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-top:8px;}
+
+/* TESTIMONIALS */
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;margin-top:56px;max-width:1200px;margin-left:auto;margin-right:auto;}
+.testi-card{background:var(--bg);border:1px solid var(--border);border-radius:16px;padding:28px;}
+.testi-card.feat{background:var(--primary);border-color:var(--primary);grid-row:span 2;}
+.qmark{font-size:52px;line-height:0.8;color:var(--accent);font-family:Georgia,serif;margin-bottom:16px;}
+.testi-card .qtext{font-size:14px;color:var(--text);line-height:1.8;margin-bottom:20px;word-break:keep-all;}
+.testi-card.feat .qtext{color:rgba(255,255,255,0.8);}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.av{width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;}
+.an{font-size:13px;font-weight:700;color:var(--primary);}
+.testi-card.feat .an{color:#fff;}
+.ar{font-size:12px;color:var(--muted);}
+.testi-card.feat .ar{color:rgba(255,255,255,0.45);}
+.stars{color:#FBBF24;font-size:13px;margin-bottom:12px;}
+
+/* FAQ */
+.faq-section{background:var(--bg);}
+.faq-list{max-width:780px;margin:56px auto 0;display:flex;flex-direction:column;gap:12px;}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+.faq-q{
+  width:100%;background:none;border:none;padding:20px 24px;text-align:left;
+  font-size:15px;font-weight:600;color:var(--primary);cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;
+  font-family:'Noto Sans KR',sans-serif;
+}
+.faq-q:hover{background:rgba(0,0,0,0.02);}
+.faq-arrow{font-size:20px;color:var(--muted);transition:transform 0.3s;flex-shrink:0;line-height:1;}
+.faq-item.open .faq-arrow{transform:rotate(45deg);}
+.faq-a{padding:0 24px;font-size:14px;color:var(--muted);line-height:1.8;max-height:0;overflow:hidden;transition:max-height 0.35s ease,padding 0.35s ease;word-break:keep-all;}
+.faq-item.open .faq-a{max-height:300px;padding:0 24px 22px;}
+
+/* APPLY */
+#apply{background:var(--primary);text-align:center;}
+#apply .section-label{color:var(--accent2);text-align:center;}
+#apply .section-title{color:#fff;text-align:center;}
+#apply .section-desc{color:rgba(255,255,255,0.5);margin:0 auto;text-align:center;}
+.apply-card{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:24px;padding:48px;max-width:620px;margin:48px auto 0;
+  text-align:left;
+}
+.form-group{margin-bottom:16px;}
+.form-group label{display:block;font-size:13px;font-weight:600;color:rgba(255,255,255,0.65);margin-bottom:8px;}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.15);
+  border-radius:10px;padding:13px 16px;font-size:14px;color:#fff;
+  font-family:'Noto Sans KR',sans-serif;outline:none;transition:border-color 0.2s;
+}
+.form-group input::placeholder,.form-group textarea::placeholder{color:rgba(255,255,255,0.3);}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--accent);}
+.form-group select{color:rgba(255,255,255,0.65);}
+.form-group select option{background:#0D1B2A;color:#fff;}
+.form-group textarea{resize:vertical;min-height:80px;}
+
+/* 개인정보 동의 박스 */
+.privacy-box{
+  background:rgba(0,0,0,0.2);border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;padding:20px;margin:8px 0 20px;
+  max-height:160px;overflow-y:auto;
+}
+.privacy-box p{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.9;word-break:keep-all;}
+.privacy-box strong{color:rgba(255,255,255,0.7);font-weight:600;}
+.privacy-check-row{display:flex;align-items:flex-start;gap:10px;margin-top:10px;}
+.privacy-check-row input[type=checkbox]{
+  width:18px;height:18px;flex-shrink:0;margin-top:1px;
+  accent-color:var(--accent);cursor:pointer;background:transparent;
+  border:1px solid rgba(255,255,255,0.3);border-radius:4px;
+}
+.privacy-check-row label{font-size:13px;color:rgba(255,255,255,0.7);cursor:pointer;line-height:1.5;word-break:keep-all;}
+.privacy-check-row label span{color:var(--accent);font-weight:700;}
+
+.apply-submit{
+  width:100%;background:var(--accent);color:#fff;border:none;
+  padding:16px;border-radius:10px;font-size:16px;font-weight:700;
+  cursor:pointer;margin-top:8px;font-family:'Noto Sans KR',sans-serif;
+  transition:opacity 0.2s,transform 0.15s;
+  box-shadow:0 4px 24px rgba(255,79,31,0.4);
+}
+.apply-submit:hover{opacity:0.9;transform:translateY(-1px);}
+.apply-note{font-size:12px;color:rgba(255,255,255,0.35);margin-top:14px;line-height:1.7;text-align:center;word-break:keep-all;}
+
+/* 상담 책임자 / 하단 정보 */
+.info-band{background:#060F1C;padding:48px 6%;}
+.info-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:40px;max-width:1100px;margin:0 auto;align-items:start;}
+.info-block h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent2);margin-bottom:16px;}
+.info-block p,.info-block li{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.9;}
+.info-block strong{color:rgba(255,255,255,0.8);font-weight:600;}
+.info-block ul{list-style:none;}
+.info-block ul li{display:flex;align-items:flex-start;gap:8px;}
+.info-block ul li::before{content:'·';color:var(--accent);flex-shrink:0;}
+.contact-links{display:flex;flex-direction:column;gap:12px;list-style:none !important;}
+.contact-links li{display:flex !important;align-items:center;gap:10px;}
+.contact-links li::before{display:none !important;}
+.contact-icon{font-size:16px;flex-shrink:0;}
+.contact-links a{font-size:14px;color:rgba(255,255,255,0.6);text-decoration:none;font-weight:500;transition:color 0.2s;}
+.contact-links a:hover{color:#fff;}
+.kakao-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  background:#FEE500;color:#191919;
+  padding:10px 20px;border-radius:8px;font-size:14px;font-weight:700;
+  text-decoration:none;transition:opacity 0.2s,transform 0.15s;
+  margin-top:4px;
+}
+.kakao-btn:hover{opacity:0.88;transform:translateY(-1px);}
+
+/* FOOTER */
+footer{
+  background:#040B14;padding:28px 6%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+  border-top:1px solid rgba(255,255,255,0.05);
+}
+.footer-logo{font-size:20px;font-weight:900;letter-spacing:3px;color:rgba(255,255,255,0.4);}
+.footer-logo span{color:rgba(255,79,31,0.6);}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.2);line-height:1.7;}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .curr-grid{grid-template-columns:1fr;}
+  .why-grid{grid-template-columns:1fr;gap:40px;}
+  .why-cards{grid-template-columns:1fr;}
+  .why-card.wide{grid-column:span 1;}
+  .info-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hero-stats{gap:24px;}
+}
+@media(max-width:600px){
+  .hero h1{letter-spacing:-1px;}
+  .apply-card{padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">GAS<span>IO</span></div>
+  <ul class="nav-links">
+    <li><a href="#why">왜 GASIO</a></li>
+    <li><a href="#curriculum">과정 안내</a></li>
+    <li><a href="#process">상담 절차</a></li>
+    <li><a href="#faq">FAQ</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.querySelector('#apply').scrollIntoView({behavior:'smooth'})">
+    무료 상담 신청 →
+  </button>
+</nav>
+
+<section class="hero">
+  <div class="hero-watermark">GASIO</div>
+  <div class="always-badge">🟢 항시 모집중 · 전국 비대면 가능</div>
+  <h1>
+    국비과정,<br>
+    더이상 고민하지 마세요<br>
+    <em>전문가</em>가 찾아드립니다
+  </h1>
+  <p class="hero-tagline">맞는 국비과정 찾아 가시오 !</p>
+  <p class="hero-sub">
+    수백 개의 국비지원 교육과정 중 내게 딱 맞는 과정을<br>
+    GASIO 전문 상담사가 1:1로 연결해드립니다.<br>
+    전국 어디서나, 비대면으로 바로 시작하세요.
+  </p>
+  <div class="hero-cta-group">
+    <a href="#apply" class="btn-primary">지금 무료 상담 받기</a>
+    <a href="#curriculum" class="btn-outline">과정 둘러보기</a>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">100<span>%</span></div>
+      <div class="hero-stat-label">수강료 국비지원 가능</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">5<span>~6개월</span></div>
+      <div class="hero-stat-label">집중 과정</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">3<span>개</span></div>
+      <div class="hero-stat-label">전문 트랙</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">전국<span>↗</span></div>
+      <div class="hero-stat-label">비대면 상담 가능</div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="hl">✦ 항시모집중</span><span>퀀트 · 데이터분석</span>
+    <span class="hl">✦ 전국 비대면</span><span>휴먼 · 개발자</span>
+    <span class="hl">✦ 국비 100% 지원</span><span>사이버보안 · 인프라</span>
+    <span class="hl">✦ 1:1 전문 상담</span><span>금융권 · 행정 · 통계</span>
+    <span class="hl">✦ 항시모집중</span><span>퀀트 · 데이터분석</span>
+    <span class="hl">✦ 전국 비대면</span><span>휴먼 · 개발자</span>
+    <span class="hl">✦ 국비 100% 지원</span><span>사이버보안 · 인프라</span>
+    <span class="hl">✦ 1:1 전문 상담</span><span>금융권 · 행정 · 통계</span>
+  </div>
+</div>
+
+<section id="why" style="background:#fff;">
+  <div class="why-grid">
+    <div>
+      <div class="section-label">왜 GASIO인가</div>
+      <h2 class="section-title">혼자 찾다<br>지치셨나요?</h2>
+      <p class="section-desc">
+        수백 개의 국비과정 중 어디에 지원해야 할지,
+        내일배움카드를 어떻게 써야 할지 막막하다면
+        GASIO 전문 상담사에게 물어보세요.
+        딱 맞는 과정을 골라드립니다.
+      </p>
+    </div>
+    <div class="why-cards">
+      <div class="why-card">
+        <div class="ico">🎯</div>
+        <h3>맞춤 과정 매칭</h3>
+        <p>관심 분야와 목표를 듣고 가장 적합한 국비과정을 1:1로 추천해드립니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico">💳</div>
+        <h3>내일배움카드 안내</h3>
+        <p>카드 발급부터 수강 신청까지 전 과정을 단계별로 가이드해드립니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico">📡</div>
+        <h3>전국 비대면 상담</h3>
+        <p>지역에 상관없이 전화·카카오 채널로 즉시 상담 가능합니다.</p>
+      </div>
+      <div class="why-card">
+        <div class="ico">🔗</div>
+        <h3>학원 수강 연계</h3>
+        <p>상담 후 검증된 학원과 직접 연결하여 빠른 수강 등록을 도와드립니다.</p>
+      </div>
+      <div class="why-card wide">
+        <div class="big-word">₩0</div>
+        <h3>상담 비용 전액 무료 — 지금 바로 물어보세요</h3>
+        <p>GASIO의 모든 상담 서비스는 무료입니다. 국비지원 교육과정 안내 및 학원 연계까지 비용 없이 도와드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="curriculum" class="curriculum-section">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-label">과정 안내</div>
+    <h2 class="section-title">3가지 전문 트랙,<br>내게 맞는 방향을 찾으세요</h2>
+    <p class="section-desc">어떤 트랙이 맞는지 모르겠다면 상담사가 함께 골라드립니다.</p>
+  </div>
+  <div class="curr-grid">
+    <div class="curr-card c-quant">
+      <div class="curr-card-ghost">Q</div>
+      <div class="curr-label">Track 01 · Quant</div>
+      <h3>퀀트</h3>
+      <div class="curr-eng">Data · Finance · Statistics</div>
+      <ul>
+        <li>데이터 분석 (Python · R · SQL)</li>
+        <li>금융권 취업 연계 과정</li>
+        <li>행정 데이터 활용 과정</li>
+        <li>통계 분석 및 시각화</li>
+        <li>AI · 머신러닝 기초 포함</li>
+      </ul>
+    </div>
+    <div class="curr-card c-human">
+      <div class="curr-card-ghost">H</div>
+      <div class="curr-label">Track 02 · Human</div>
+      <h3>휴먼</h3>
+      <div class="curr-eng">Developer · Full Stack · AI</div>
+      <ul>
+        <li>웹 풀스택 개발 (프론트·백엔드)</li>
+        <li>Java / Python / JavaScript</li>
+        <li>AI 서비스 개발</li>
+        <li>앱 개발 (Android · iOS)</li>
+        <li>클라우드 및 DevOps 기초</li>
+      </ul>
+    </div>
+    <div class="curr-card c-cyber">
+      <div class="curr-card-ghost">C</div>
+      <div class="curr-label">Track 03 · Cyber</div>
+      <h3>사이버보안</h3>
+      <div class="curr-eng">Security · Infra · Network</div>
+      <ul>
+        <li>네트워크 보안 (방화벽·침입탐지)</li>
+        <li>인프라 관리 (서버·클라우드)</li>
+        <li>모의해킹 및 취약점 분석</li>
+        <li>리눅스 시스템 관리</li>
+        <li>보안 자격증 연계 (정보보안기사 등)</li>
+      </ul>
+    </div>
+  </div>
+  <div class="curr-bottom">
+    <div class="curr-bottom-icon">💡</div>
+    <div class="curr-bottom-text">
+      <strong>어떤 트랙이 맞는지 모르시겠나요?</strong><br>
+      걱정 마세요. GASIO 전문 상담사가 현재 배경과 목표를 듣고 최적의 트랙과 학원을 직접 연결해드립니다.
+    </div>
+  </div>
+</section>
+
+<section id="process" style="background:var(--bg);">
+  <div style="max-width:780px;margin:0 auto;text-align:center;">
+    <div class="section-label">상담 절차</div>
+    <h2 class="section-title">신청부터 수강까지<br>4단계로 끝납니다</h2>
+  </div>
+  <div class="process-list">
+    <div class="process-step">
+      <div class="step-dot">01</div>
+      <div class="step-content">
+        <h3>무료 상담 신청</h3>
+        <p>하단 폼 또는 카카오채널로 이름·연락처·관심 트랙만 남겨주세요. 1분이면 됩니다.</p>
+        <span class="step-tag">즉시 접수</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-dot">02</div>
+      <div class="step-content">
+        <h3>1:1 전화 상담 (15~20분)</h3>
+        <p>담당 상담사 유동우가 직접 연락드려 목표와 상황에 맞는 과정을 안내해드립니다. 전국 비대면으로 진행됩니다.</p>
+        <span class="step-tag">1 영업일 이내</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-dot">03</div>
+      <div class="step-content">
+        <h3>내일배움카드 발급 안내</h3>
+        <p>카드가 없으셔도 됩니다. 발급 방법부터 사용 방법까지 단계별로 설명해드립니다.</p>
+        <span class="step-tag">서류 도움 제공</span>
+      </div>
+    </div>
+    <div class="process-step">
+      <div class="step-dot">04</div>
+      <div class="step-content">
+        <h3>학원 연계 및 수강 등록</h3>
+        <p>검증된 학원과 직접 연결하여 수강 등록까지 완료해드립니다. 상담 후에도 궁금한 점은 언제든 문의 가능합니다.</p>
+        <span class="step-tag">끝까지 함께</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:#fff;">
+  <div style="text-align:center;">
+    <div class="section-label">상담 후기</div>
+    <h2 class="section-title">이미 찾아간 사람들의<br>이야기입니다</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card feat">
+      <div class="qmark">"</div>
+      <p class="qtext">
+        어떤 과정을 들어야 할지 한 달 동안 혼자 검색만 했는데, GASIO 상담 한 번에 방향이 딱 잡혔어요.
+        퀀트 트랙 추천받고 데이터 분석 과정 수강 중입니다. 비대면으로 상담받아서 더 편했어요.
+      </p>
+      <div class="testi-author">
+        <div class="av" style="background:rgba(255,79,31,0.18);color:var(--accent);">김</div>
+        <div>
+          <div class="an">김민서</div>
+          <div class="ar">퀀트 트랙 상담 후 수강 중</div>
+        </div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="qtext">내일배움카드 발급부터 수강 신청까지 다 도와주셔서 정말 편했습니다. 덕분에 개발자 과정 시작했어요.</p>
+      <div class="testi-author">
+        <div class="av" style="background:#EAF3DE;color:#3B6D11;">이</div>
+        <div><div class="an">이재현</div><div class="ar">휴먼(개발자) 트랙</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="qtext">사이버보안 쪽으로 가고 싶었는데 어느 학원이 좋은지 몰랐는데, 딱 맞는 곳 연결해주셔서 감사해요.</p>
+      <div class="testi-author">
+        <div class="av" style="background:#E6F1FB;color:#185FA5;">박</div>
+        <div><div class="an">박준혁</div><div class="ar">사이버보안 트랙</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="stars">★★★★★</div>
+      <p class="qtext">지방에 살아서 상담받기 어려울 줄 알았는데 전화로 다 해결됐어요. 국비로 수강까지 연결됐습니다.</p>
+      <div class="testi-author">
+        <div class="av" style="background:#FAEEDA;color:#854F0B;">최</div>
+        <div><div class="an">최다은</div><div class="ar">부산 · 비대면 상담</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq-section">
+  <div style="text-align:center;max-width:600px;margin:0 auto;">
+    <div class="section-label">자주 묻는 질문</div>
+    <h2 class="section-title">궁금하신 점<br>다 물어보세요</h2>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        내일배움카드가 없어도 상담받을 수 있나요?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">
+        네, 카드가 없으셔도 상담 가능합니다. 오히려 카드 발급부터 함께 도와드리는 경우가 많습니다.
+        상담 후 발급 방법과 절차를 단계별로 안내해드립니다.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        지방에 살아도 상담받을 수 있나요?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">
+        물론입니다. GASIO는 전국 비대면 상담을 기본으로 운영합니다.
+        전화 또는 카카오채널을 통해 전국 어디서나 동일한 상담 서비스를 받으실 수 있습니다.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        상담 비용이 있나요?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">
+        GASIO의 모든 상담 서비스는 완전 무료입니다.
+        과정 안내부터 학원 연계까지 어떠한 비용도 청구되지 않습니다.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        어떤 트랙이 저한테 맞는지 모르겠어요.
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">
+        정확히 그런 분들을 위해 GASIO가 있습니다.
+        현재 직업·학력·관심 분야·목표를 5분만 이야기해주시면 가장 적합한 트랙과 학원을 골라드립니다.
+        결정을 강요하지 않으니 편하게 연락주세요.
+      </div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        재직자도 국비지원 받을 수 있나요?
+        <span class="faq-arrow">+</span>
+      </button>
+      <div class="faq-a">
+        재직자·구직자·자영업자 모두 내일배움카드 발급 대상이 될 수 있습니다.
+        다만 개인 상황에 따라 지원 금액과 조건이 다를 수 있으므로, 상담을 통해 정확한 내용을 확인해드리겠습니다.
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apply">
+  <div class="section-label">무료 상담 신청</div>
+  <h2 class="section-title">지금 바로 물어보세요</h2>
+  <p class="section-desc">이름과 연락처만 남겨주시면 1 영업일 이내 담당 상담사가 연락드립니다.</p>
+  <div class="apply-card">
+    <div class="form-group">
+      <label>이름 *</label>
+      <input type="text" id="f-name" placeholder="홍길동" />
+    </div>
+    <div class="form-group">
+      <label>연락처 *</label>
+      <input type="tel" id="f-phone" placeholder="010-0000-0000" />
+    </div>
+    <div class="form-group">
+      <label>희망 과정</label>
+      <select id="f-track">
+        <option value="" disabled selected>선택해주세요 (모르면 선택 안해도 됩니다)</option>
+        <option>퀀트 (데이터분석 · 금융 · 통계)</option>
+        <option>휴먼 (개발자)</option>
+        <option>사이버보안 (인프라 · 네트워크)</option>
+        <option>잘 모르겠어요 — 추천받고 싶어요</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>문의 사항</label>
+      <textarea id="f-msg" placeholder="궁금한 점을 자유롭게 적어주세요."></textarea>
+    </div>
+    <div class="form-group">
+      <label>개인정보 수집 및 이용 동의 *</label>
+      <div class="privacy-box">
+        <p>
+          <strong>수집 목적</strong> : 국비지원 교육과정 안내 및 학원 수강 상담 연계<br>
+          <strong>수집 항목</strong> : 이름, 연락처, 희망 과정, 문의 사항<br>
+          <strong>보유 및 이용 기간</strong> : 상담 목적 달성 및 학원 이관 후 6개월 이내 (이후 지체 없이 파기)<br>
+          <strong>동의 거부 권리</strong> : 귀하는 개인정보 수집 동의를 거부할 권리가 있으나, 동의 거부 시 상담 진행이 제한될 수 있습니다.
+        </p>
+      </div>
+      <div class="privacy-check-row">
+        <input type="checkbox" id="f-privacy" />
+        <label for="f-privacy">위 개인정보 수집 및 이용에 <span>동의합니다</span> (필수)</label>
+      </div>
+    </div>
+    <button class="apply-submit" onclick="handleSubmit()">무료 상담 신청하기 →</button>
+    <p class="apply-note">
+      상담 책임자 : 유동우 · 업무 내용 : 국비지원 교육 정보 가이드 및 학원 수강 상담 연계<br>
+      수집된 정보는 상담 목적 외 사용되지 않습니다.
+    </p>
+  </div>
+</section>
+
+<div class="info-band">
+  <div class="info-grid">
+    <div class="info-block">
+      <h4>상담 책임자</h4>
+      <p>
+        <strong>유동우</strong><br>
+        업무 내용 : 국비지원 교육 정보 가이드 및<br>학원 수강 상담 연계
+      </p>
+    </div>
+    <div class="info-block">
+      <h4>개인정보 수집·이용</h4>
+      <ul>
+        <li>수집 목적 : 국비지원 교육과정 안내 및 학원 수강 상담 연계</li>
+        <li>수집 항목 : 이름, 연락처, 희망 과정, 문의 사항</li>
+        <li>보유 기간 : 상담 목적 달성 및 학원 이관 후 6개월 이내 파기</li>
+        <li>동의 거부 시 상담 진행이 제한될 수 있습니다.</li>
+      </ul>
+    </div>
+    <div class="info-block">
+      <h4>문의</h4>
+      <ul class="contact-links">
+        <li>
+          <span class="contact-icon">✉</span>
+          <a href="mailto:dbehddn3391@gmail.com">dbehddn3391@gmail.com</a>
+        </li>
+        <li>
+          <span class="contact-icon">📞</span>
+          <a href="tel:0532435003">053-243-5003 (전국문의가능)</a>
+        </li>
+        <li>
+          <a href="https://open.kakao.com/o/gco5Ldyg" target="_blank" rel="noopener" class="kakao-btn">
+            💬 카카오채널 상담 바로가기 →
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">GAS<span>IO</span></div>
+  <div class="footer-copy">
+    © 2025 GASIO. All rights reserved.<br>
+    본 서비스는 국비지원 교육과정 안내 및 학원 수강 상담 연계 서비스입니다.
+  </div>
+</footer>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init("RwfwjSuube2qY-U9T"); 
+
+function toggleFaq(btn){
+  const item=btn.parentElement;
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el=>el.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
+
+function handleSubmit(){
+  const name=document.getElementById('f-name').value.trim();
+  const phone=document.getElementById('f-phone').value.trim();
+  const track=document.getElementById('f-track').value;
+  const msg=document.getElementById('f-msg').value.trim();
+  const privacy=document.getElementById('f-privacy').checked;
+  
+  if(!name){alert('이름을 입력해주세요.');return;}
+  if(!phone){alert('연락처를 입력해주세요.');return;}
+  if(!privacy){alert('개인정보 수집 및 이용에 동의해주세요.');return;}
+  
+  const btn=document.querySelector('.apply-submit');
+  btn.textContent='전송 중... 잠시만 기다려주세요.';
+  btn.disabled=true;
+
+  const templateParams = {
+    to_email: 'dbehddn3391@gmail.com',
+    from_name: name,
+    phone_number: phone,
+    selected_track: track ? track : '선택 안 함',
+    message: msg ? msg : '없음'
+  };
+
+  emailjs.send('service_y6n6nms', 'template_vhbm698', templateParams)
+    .then(function(response) {
+       btn.textContent='✓ 신청이 접수되었습니다! 1 영업일 이내 연락드리겠습니다.';
+       btn.style.background='#00C48C';
+       btn.style.boxShadow='0 4px 24px rgba(0,196,140,0.4)';
+    }, function(error) {
+       alert('메일 발송에 실패했습니다. 관리자에게 문의해 주세요.');
+       btn.textContent='무료 상담 신청하기 →';
+       btn.disabled=false;
+    });
+}
+
+window.addEventListener('scroll',()=>{
+  const nav=document.querySelector('nav');
+  nav.style.boxShadow=window.scrollY>60?'0 2px 20px rgba(0,0,0,0.08)':'none';
+});
+</script>
+</body>
+</html>
